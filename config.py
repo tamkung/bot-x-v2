@@ -48,7 +48,7 @@ class Config(object):
     X_EMAIL = os.environ.get('X_EMAIL')
     X_USERNAME = os.environ.get('X_USERNAME')
     X_PASSWORD = os.environ.get('X_PASSWORD')
-    X_URL = os.environ.get('X_URL')
+    X_URL = os.environ.get('X_URL', os.environ.get('DEFAULT_X_URL'))
     OS_TYPE = os.environ.get('OS_TYPE')
 
     SCHEDULER_EXECUTORS = {

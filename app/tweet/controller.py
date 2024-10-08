@@ -17,7 +17,7 @@ DISCORD_WEBHOOK_URL = os.getenv('DISCORD_WEBHOOK_URL')
 X_EMAIL = os.getenv('X_EMAIL')
 X_USERNAME = os.getenv('X_USERNAME')
 X_PASSWORD = os.getenv('X_PASSWORD')
-X_URL = os.getenv('X_URL')
+X_URL = os.environ.get('X_URL', os.getenv('DEFAULT_X_URL'))
 
 driver = None
 sent_tweet_links = {}
