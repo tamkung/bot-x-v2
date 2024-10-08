@@ -101,9 +101,9 @@ def get_latest_tweets(driver, sent_tweet_links):
                 
                 tweet_time_utc = datetime.strptime(tweet_time, "%Y-%m-%dT%H:%M:%S.000Z")
                 tweet_time_gmt7 = tweet_time_utc + timedelta(hours=7)
-                print(tweet_time_gmt7)
+                
                 current_time_gmt7 = datetime.now()
-                print(current_time_gmt7)
+                
                 time_diff = current_time_gmt7 - tweet_time_gmt7
                 if time_diff.total_seconds() <= 120:
                     tweet_text = tweet.find_element(By.XPATH, './/div[@data-testid="tweetText"]').text
