@@ -1,0 +1,11 @@
+Flask==3.0.3
+click==8.1.7
+isort==5.13.2
+yapf==0.40.0
+APScheduler==3.6.3
+Flask-APScheduler==1.13.1
+selenium==4.14.0
+requests==2.31.0
+python-dotenv==1.0.1
+gevent==24.2.1
+pytz==2024.2
