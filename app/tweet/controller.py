@@ -18,7 +18,6 @@ X_EMAIL = os.getenv('X_EMAIL')
 X_USERNAME = os.getenv('X_USERNAME')
 X_PASSWORD = os.getenv('X_PASSWORD')
 X_URL = os.getenv('X_URL')
-OS_TYPE = os.getenv('OS_TYPE')
 
 driver = None
 sent_tweet_links = {}
@@ -30,21 +29,14 @@ def start_driver():
     return driver
 
 def init_and_login():
-    if OS_TYPE == 'windows':
-        s = Service('C:\\webdriver\\chromedriver.exe')
-        driver = webdriver.Chrome(service=s)
-    elif OS_TYPE == 'linux':
-        s = Service('/usr/local/bin/chromedriver')
-        driver = webdriver.Chrome(service=s)
-    else:
-        chrome_options = Options()
-        chrome_options.add_argument("--headless")
-        chrome_options.add_argument("--no-sandbox")
-        chrome_options.add_argument("--disable-dev-shm-usage")
-        chrome_options.add_argument("--disable-gpu")
-        chrome_options.add_argument("--remote-debugging-port=9222")
-        s = Service('/usr/local/bin/chromedriver-linux64/chromedriver')
-        driver = webdriver.Chrome(service=s, options=chrome_options)
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--disable-gpu")
+    chrome_options.add_argument("--remote-debugging-port=9222")
+    s = Service('/usr/local/bin/chromedriver-linux64/chromedriver')
+    driver = webdriver.Chrome(service=s, options=chrome_options)
 
     driver.get('https://twitter.com/login')
     time.sleep(5)
