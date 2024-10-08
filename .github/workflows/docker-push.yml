@@ -8,20 +8,16 @@ on:
 jobs:
   docker-push:
     runs-on: ubuntu-latest
-    env:
-      DOCKERHUB_USERNAME: ${{ env.DOCKERHUB_USERNAME }}
-      DOCKERHUB_TOKEN: ${{ env.DOCKERHUB_TOKEN }}
-      ENV_FILE: ${{ env.ENV_FILE }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Create env file
-        run: echo "$ENV_FILE" > .env
+        run: echo "${{ secrets.ENV_FILE }}" > .env
       - name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
-          username: $DOCKERHUB_USERNAME
-          password: $DOCKERHUB_TOKEN
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       - name: Build and push
@@ -30,4 +26,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: $DOCKERHUB_USERNAME/bot-x-v2:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/bot-x-v2:latest
